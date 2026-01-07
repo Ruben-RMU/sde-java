@@ -1,5 +1,13 @@
+import Characters.Player;
+
 public class Main {
-    public static void main(String[] args) {
-        System.out.println("Hello World");
+    private Player _player;
+
+    public Main() {
+        this._player = new Player();
+    }
+
+    public void start() {
+
     }
 }
