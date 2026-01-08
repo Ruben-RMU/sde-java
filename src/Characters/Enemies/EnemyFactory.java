@@ -2,16 +2,16 @@ package Characters.Enemies;
 
 import Characters.Enemy;
 
-public class EnemyFactory{
-    private Goblin goblinPrototype;
-    private Orc orcPrototype;
-    private Knight knightPrototype;
+public final class EnemyFactory {
+    private static final Goblin goblinPrototype = new Goblin("Goblin", 5, 1);
+    private static final Orc orcPrototype = new Orc("Orc", 15, 1);
+    private static final Knight knightPrototype = new Knight("Knight", 15, 12);
 
-    public Enemy createEnemy() {
+    private static Enemy createEnemy() {
         return null;
     }
 
-    public Enemy createRandomEncounter() {
+    public static Enemy createRandomEncounter() {
         return null;
     }
 }

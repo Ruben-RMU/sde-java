@@ -12,6 +12,22 @@ public class Combat {
     }
 
     public void start() {
+        while (_player.isAlive() && _enemy.isAlive()) {
+            _player.takeTurn();
 
+            if (!_enemy.isAlive()) {
+                System.out.println("Enemy defeated!");
+                break;
+            }
+
+            _enemy.takeTurn();
+
+            if (!_player.isAlive()) {
+                System.out.println("Player defeated!");
+                break;
+            }
+        }
+
+        System.out.println("Combat has ended!");
     }
 }

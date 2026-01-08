@@ -1,13 +1,6 @@
-import Characters.Player;
-
 public class Main {
-    private Player _player;
-
-    public Main() {
-        this._player = new Player();
-    }
-
-    public void start() {
-
+    public static void main(String[] args) {
+        Game game = new Game();
+        game.start();
     }
 }
