@@ -22,7 +22,7 @@ We utilized **GitHub** for version control and task management to ensure a smoot
     * *Usage*: Implemented via `EnemyFactory` to dynamically spawn different monsters.
     * *Benefit*: Decouples the game loop from specific enemy classes.
 
-* ** Prototype**: 
+* **Prototype**: 
     * *Usage*: Allows cloning of existing enemy objects.
     * *Benefit*: Efficiently creates "Duo" or group encounters by duplicating a template monster.
 
