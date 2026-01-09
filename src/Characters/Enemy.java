@@ -2,7 +2,9 @@ package Characters;
 
 public abstract class Enemy extends Character implements Cloneable {
     public Enemy(String name, int health, int attackPower) {
-
+        _name = name;
+        _health = health;
+        _attackPower = attackPower;
     }
 
     @Override
@@ -15,15 +17,21 @@ public abstract class Enemy extends Character implements Cloneable {
     }
 
     @Override
-    public final void takeTurn() {
-
+    public void takeTurn(Character target) {
+        selectAction();
+        performAction(target);
+        endTurn();
     }
 
-    protected abstract void selectAction(Character target);
+    public String getName() {
+        return _name;
+    }
+
+    protected abstract void selectAction();
 
     protected abstract void performAction(Character target);
 
     protected void endTurn() {
-
+        System.out.println(_name + " ends its turn.");
     }
 }

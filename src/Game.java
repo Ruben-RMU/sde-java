@@ -6,7 +6,7 @@ import java.util.Scanner;
 import Utils.RandomUtils;
 
 public class Game {
-    private Player _player;
+    private final Player _player;
 
     private Scanner _input;
 

@@ -5,17 +5,19 @@ import Characters.Enemy;
 
 public class Goblin extends Enemy {
 
-    public Goblin(String name, int health, int attackPower) {
-        super(name, health, attackPower);
+    public Goblin() {
+        super("Goblin", 5, 1);
+        _maxHealth = 5;
     }
 
     @Override
-    protected void selectAction(Character target) {
-
+    protected void selectAction() {
+        System.out.println("Goblin snarls and prepares to attack!");
     }
 
     @Override
     protected void performAction(Character target) {
-
+        System.out.println("Goblin slashes!");
+        target.takeDamage(_attackPower);
     }
 }

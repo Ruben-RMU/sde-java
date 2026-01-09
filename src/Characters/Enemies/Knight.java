@@ -5,17 +5,19 @@ import Characters.Enemy;
 
 public class Knight extends Enemy {
 
-    public Knight(String name, int health, int attackPower) {
-        super(name, health, attackPower);
+    public Knight() {
+        super("Knight", 10, 2);
+        _maxHealth = 10;
     }
 
     @Override
-    protected void selectAction(Character target) {
-
+    protected void selectAction() {
+        System.out.println("Knight charges forward and prepares its attack!");
     }
 
     @Override
     protected void performAction(Character target) {
-
+        System.out.println("Knight deals a powerful stab with his lance!");
+        target.takeDamage(_attackPower);
     }
 }

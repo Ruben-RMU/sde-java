@@ -23,5 +23,5 @@ public abstract class Character {
         );
     }
 
-    public abstract void takeTurn();
+    public abstract void takeTurn(Character target);
 }

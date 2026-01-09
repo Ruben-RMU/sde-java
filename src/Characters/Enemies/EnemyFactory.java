@@ -1,17 +1,48 @@
 package Characters.Enemies;
 
 import Characters.Enemy;
+import Utils.RandomUtils;
 
 public final class EnemyFactory {
-    private static final Goblin goblinPrototype = new Goblin("Goblin", 5, 1);
-    private static final Orc orcPrototype = new Orc("Orc", 15, 1);
-    private static final Knight knightPrototype = new Knight("Knight", 15, 12);
+
+    private static final Goblin goblinPrototype = new Goblin();
+    private static final Orc orcPrototype = new Orc();
+    private static final Knight knightPrototype = new Knight();
+
+    private EnemyFactory() {}
 
     private static Enemy createEnemy() {
-        return null;
+        double roll = Math.random();
+        Enemy enemy;
+
+        if (roll < 0.75) {
+            enemy = goblinPrototype.clone();
+        } else if (roll < 0.95) {
+            enemy = orcPrototype.clone();
+        } else {
+            enemy = knightPrototype.clone();
+        }
+
+        System.out.println("A " + enemy.getName() + " appears!");
+        return enemy;
     }
 
     public static Enemy createRandomEncounter() {
-        return null;
+        if (RandomUtils.chance(0.2)) {
+            EnemyGroup group = new EnemyGroup();
+            Enemy first = createEnemy();
+            Enemy second = createEnemy();
+            group.add(first);
+            group.add(second);
+
+            System.out.print("Together they form a group: ");
+            for (Enemy e : group.getEnemies()) {
+                System.out.print(e.getName() + " ");
+            }
+            System.out.println("\n");
+            return group;
+        }
+
+        return createEnemy();
     }
 }
