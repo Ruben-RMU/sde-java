@@ -23,12 +23,16 @@ public class Player extends Character {
         target.takeDamage(_attackPower);
     }
 
+    public void resetHealth() {
+        _health = _maxHealth;
+    }
+
     // Strong attack
     public void strongAttack(Enemy target) {
         if (_mana > 0) {
             _mana--;
             System.out.println(_name + " uses STRONG ATTACK on " + target.getName() + "! (-1 mana)");
-            target.takeDamage(_attackPower * 2);
+            target.takeDamage(_attackPower * 3);
         } else {
             System.out.println(_name + " tried a STRONG ATTACK but has no mana! Turn over.");
         }

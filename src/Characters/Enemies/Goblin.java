@@ -6,7 +6,7 @@ import Characters.Enemy;
 public class Goblin extends Enemy {
 
     public Goblin() {
-        super("Goblin", 5, 1);
+        super("Goblin", 15, 10);
         _maxHealth = 5;
     }
 

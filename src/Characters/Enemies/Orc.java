@@ -5,8 +5,8 @@ import Characters.Enemy;
 
 public class Orc extends Enemy {
     public Orc() {
-        super("Orc", 15, 1);
-        _maxHealth = 15;
+        super("Orc", 30, 5);
+        _maxHealth = 30;
     }
 
     @Override

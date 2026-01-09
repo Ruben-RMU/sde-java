@@ -22,7 +22,7 @@ public void start() {
 
         if (!_enemy.isAlive()) {
             System.out.println("\n Victory! The threat of " + _enemy.getName() + " has been neutralized.");
-            System.out.println(_player.getName() + " absorbs a point of mana from the essence of the fallen!");
+            System.out.println(_player.getName() + " absorbs a point of mana and the health from the essence of the fallen!");
             break;
         }
 
