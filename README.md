@@ -24,7 +24,7 @@ We utilized **GitHub** for version control and task management to ensure a smoot
 
 * **Prototype**: 
     * *Usage*: Allows cloning of existing enemy objects.
-    * *Benefit*: Efficiently creates "Duo" or group encounters by duplicating a template monster.
+    * *Benefit*: Efficiently creates "Duo" or group encounters by duplicating a template enemy.
 
 
 ### Structural Patterns
@@ -46,11 +46,14 @@ To provide a challenging yet fair experience, we designed a structured attribute
 
 | Entity Type | Base HP | Attack Damage | Creation Logic |
 | :--- | :---: | :---: | :--- |
-| **Player (Warrior)** | 100 | 10 - 15 | Manual Input |
-| **Regular Slime** | 20 | 5 - 8 | Factory Method |
-| **Goblins (Duo)** | 15 (each) | 4 - 6 | Prototype (Clone) |
-| **Final Boss** | 150 | 15 - 25 | Factory Method |
+| **Player (Warrior)** | 100 | 5 (regular) - 15 (strong) | Manual Input |
+| **Goblin** | 15 | 10  | Factory Method |
+| **Orc** | 30 | 5 | Factory Method |
+| **Knight** | 20 | 15 | Factory Method |
 
+There is also a small chance that an enemy encounter will be a duo, which was made a lot easier using the prototype method and cloning.
+
+The game continues until the player dies.
 ---
 
 ## 5. How to Run
