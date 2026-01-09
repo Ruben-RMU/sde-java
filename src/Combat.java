@@ -11,24 +11,30 @@ public class Combat {
         this._enemy = enemy;
     }
 
-    public void start() {
-        while (_player.isAlive() && _enemy.isAlive()) {
-            _player.takeTurn(_enemy);
+public void start() {
+    System.out.println("\n--- BATTLE START ---");
+    System.out.println(_player.getName() + " vs " + _enemy.getName());
 
-            if (!_enemy.isAlive()) {
-                System.out.println("Enemy defeated!");
-                System.out.println(_player.getName() + "Absorbs a point of mana off of their corpses!");
-                break;
-            }
+    while (_player.isAlive() && _enemy.isAlive()) {
+        
+        System.out.println("\n[Your Turn]");
+        _player.takeTurn(_enemy);
 
-            _enemy.takeTurn(_player);
-
-            if (!_player.isAlive()) {
-                System.out.println(_player.getName() + " has been defeated!");
-                break;
-            }
+        if (!_enemy.isAlive()) {
+            System.out.println("\n Victory! The threat of " + _enemy.getName() + " has been neutralized.");
+            System.out.println(_player.getName() + " absorbs a point of mana from the essence of the fallen!");
+            break;
         }
 
-        System.out.println("Combat has ended!");
+        System.out.println("\n[" + _enemy.getName() + "'s Turn]");
+        _enemy.takeTurn(_player);
+
+        if (!_player.isAlive()) {
+            System.out.println("\n DARKNESS FALLS... " + _player.getName() + " has been defeated!");
+            break;
+        }
     }
+
+    System.out.println("--- Combat has ended! ---\n");
+}
 }
