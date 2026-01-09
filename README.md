@@ -1,11 +1,11 @@
-#Java Terminal RPG: Design Patterns Showcase
+# Java Terminal RPG: Design Patterns Showcase
 
-##1. Introduction
+## 1. Introduction
 This project is a Java-based terminal RPG where players explore levels and engage in tactical combat. The focus of this development is not just gameplay, but the implementation of **Software Design Patterns** to ensure a clean, scalable, and professional code architecture.
 
 ---
 
-##2. Team Collaboration
+## 2. Team Collaboration
 We utilized **GitHub** for version control and task management to ensure a smooth collaborative workflow.
 
 * **joshho0701**: System Architecture Design, Pattern Documentation, and Game Balancing.
@@ -15,25 +15,25 @@ We utilized **GitHub** for version control and task management to ensure a smoot
 
 ---
 
-##3. Design Patterns Implementation
+## 3. Design Patterns Implementation
 
-###Creational Patterns
+### Creational Patterns
 * **Factory Method**: 
     * *Usage*: Implemented via `EnemyFactory` to dynamically spawn different monsters.
     * *Benefit*: Decouples the game loop from specific enemy classes.
 
-* **Prototype**: 
+* ** Prototype**: 
     * *Usage*: Allows cloning of existing enemy objects.
     * *Benefit*: Efficiently creates "Duo" or group encounters by duplicating a template monster.
 
 
-###Structural Patterns
+### Structural Patterns
 * **Composite**: 
     * *Usage*: Treats single enemies and enemy groups (Duo) as the same type.
     * *Benefit*: Simplifies the battle system logic—the same code handles one or many enemies.
 
 
-###Behavioural Patterns
+### Behavioural Patterns
 * **Template Method**: 
     * *Usage*: Defines the skeleton of a "Combat Turn" (Status -> Action -> Damage -> End).
     * *Benefit*: Ensures game rules are consistent while allowing different encounter types.
@@ -41,7 +41,7 @@ We utilized **GitHub** for version control and task management to ensure a smoot
 
 ---
 
-##4. Game Mechanics & Balance
+## 4. Game Mechanics & Balance
 To provide a challenging yet fair experience, we designed a structured attribute system:
 
 | Entity Type | Base HP | Attack Damage | Creation Logic |
@@ -53,7 +53,7 @@ To provide a challenging yet fair experience, we designed a structured attribute
 
 ---
 
-##5. How to Run
+## 5. How to Run
 1.  **Requirement**: Java JDK 8 or higher.
 2.  **Compile**: 
     ```bash
