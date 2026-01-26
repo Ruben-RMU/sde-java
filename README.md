@@ -23,6 +23,21 @@ Design Pivot: While the project uses an EnemyFactory for management, the core in
 Problem: Repeatedly calling constructors with specific base stats for random encounters can lead to hard-coded values and redundant initialization logic.
 
 Implementation: The Enemy base class implements the Cloneable interface and overrides the clone() method. The EnemyFactory maintains a set of static "Master Templates" and returns clones instead of using the new keyword.
+Code Evidence:
+// From Enemy.java
+public abstract class Enemy extends Character implements Cloneable {
+    @Override
+    public Enemy clone() {
+        try {
+            return (Enemy) super.clone(); // Returns a copy of the template
+        } catch (CloneNotSupportedException e) { ... }
+    }
+}
+
+// From EnemyFactory.java
+private static final Goblin goblinPrototype = new Goblin(); // Static Template
+// ...
+enemy = goblinPrototype.clone(); // Spawns via cloning
 ---
 
 ## 4. Game Mechanics & Balance
