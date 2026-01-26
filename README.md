@@ -15,30 +15,14 @@ We utilized **GitHub** for version control and task management to ensure a smoot
 
 ---
 
-## 3. Design Patterns Implementation
+## 3. Design Pattern Implementations
+A. Creational Pattern: Prototype
 
-### Creational Patterns
-* **Factory Method**: 
-    * *Usage*: Implemented via `EnemyFactory` to dynamically spawn different monsters.
-    * *Benefit*: Decouples the game loop from specific enemy classes.
+Design Pivot: While the project uses an EnemyFactory for management, the core instantiation logic leverages the Prototype Pattern to handle enemy variations efficiently.
 
-* **Prototype**: 
-    * *Usage*: Allows cloning of existing enemy objects.
-    * *Benefit*: Efficiently creates "Duo" or group encounters by duplicating a template enemy.
+Problem: Repeatedly calling constructors with specific base stats for random encounters can lead to hard-coded values and redundant initialization logic.
 
-
-### Structural Patterns
-* **Composite**: 
-    * *Usage*: Treats single enemies and enemy groups (Duo) as the same type.
-    * *Benefit*: Simplifies the battle system logic—the same code handles one or many enemies.
-
-
-### Behavioural Patterns
-* **Template Method**: 
-    * *Usage*: Defines the skeleton of a "Combat Turn" (Status -> Action -> Damage -> End).
-    * *Benefit*: Ensures game rules are consistent while allowing different encounter types.
-
-
+Implementation: The Enemy base class implements the Cloneable interface and overrides the clone() method. The EnemyFactory maintains a set of static "Master Templates" and returns clones instead of using the new keyword.
 ---
 
 ## 4. Game Mechanics & Balance
