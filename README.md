@@ -1,67 +1,84 @@
-# Java Terminal RPG: Design Patterns Showcase
+# Java Terminal RPG: Design Patterns Documentation
 
-## 1. Introduction
-This project is a Java-based terminal RPG where players explore levels and engage in tactical combat. The focus of this development is not just gameplay, but the implementation of **Software Design Patterns** to ensure a clean, scalable, and professional code architecture.
-
----
-
-## 2. Team Collaboration
-We utilized **GitHub** for version control and task management to ensure a smooth collaborative workflow.
-
-* **joshho0701**: System Architecture Design, Pattern Documentation, and Game Balancing.
-* **Ruben-RMU**: Core Game Engine, Game Loop Implementation, and Technical Mechanics.
-
-> **Contribution Note:** We maintained a balanced workload, with continuous integration of code and documentation to meet all project requirements.
+## 1. Project Overview
+This project is a Java-based console RPG where players explore levels and engage in tactical combat. The focus is the implementation of **Software Design Patterns** to solve structural and behavioral challenges, ensuring a clean and scalable code architecture.
 
 ---
 
-## 3. Design Pattern Implementations
-A. Creational Pattern: Prototype
+## 2. Design Patterns Implementation
 
-Design Pivot: While the project uses an EnemyFactory for management, the core instantiation logic leverages the Prototype Pattern to handle enemy variations efficiently.
+### A. Creational Pattern: Prototype
+> **Note on Factory**: While `EnemyFactory` manages instantiation, its core logic relies on the **Prototype Pattern** to spawn enemies via cloning.
 
-Problem: Repeatedly calling constructors with specific base stats for random encounters can lead to hard-coded values and redundant initialization logic.
+**Problem**: Instantiating enemies with specific stats using `new` repeatedly leads to hard-coded values and redundant initialization.
 
-Implementation: The Enemy base class implements the Cloneable interface and overrides the clone() method. The EnemyFactory maintains a set of static "Master Templates" and returns clones instead of using the new keyword.
-Code Evidence:
+**Implementation**: The `Enemy` base class implements `Cloneable` and overrides `clone()`. `EnemyFactory` maintains static "Master Templates" and returns clones of these instances.
+
+**Code Evidence:**
+```java
 // From Enemy.java
 public abstract class Enemy extends Character implements Cloneable {
     @Override
     public Enemy clone() {
         try {
-            return (Enemy) super.clone(); // Returns a copy of the template
+            return (Enemy) super.clone(); 
         } catch (CloneNotSupportedException e) { ... }
     }
 }
 
 // From EnemyFactory.java
-private static final Goblin goblinPrototype = new Goblin(); // Static Template
+private static final Goblin goblinPrototype = new Goblin(); 
 // ...
-enemy = goblinPrototype.clone(); // Spawns via cloning
----
+enemy = goblinPrototype.clone(); 
+```
 
-## 4. Game Mechanics & Balance
-To provide a challenging yet fair experience, we designed a structured attribute system:
+### B. Structural Pattern: Composite
+**Problem**: The combat system needs to handle both individual enemies and groups (e.g., a "Duo" encounter) uniformly, without requiring complex branching logic or `instanceof` checks in the battle loop
 
-| Entity Type | Base HP | Attack Damage | Creation Logic |
-| :--- | :---: | :---: | :--- |
-| **Player (Warrior)** | 100 | 5 (regular) - 15 (strong) | Manual Input |
-| **Goblin** | 15 | 10  | Factory Method |
-| **Orc** | 30 | 5 | Factory Method |
-| **Knight** | 20 | 15 | Factory Method |
+**Implementation**: We implemented the Composite Pattern where `EnemyGroup` (the Composite) extends `Enemy` (the Component) and maintains a `List<Enemy>`.
+Part-Whole Hierarchy: Because `EnemyGroup` is itself an Enemy, the `Combat` engine treats a group exactly like a single unit, transparently delegating turns to each member.
 
-There is also a small chance that an enemy encounter will be a duo, which was made a lot easier using the prototype method and cloning.
+**Part-Whole Hierarchy**: Because `EnemyGroup` is itself an `Enemy`, the `Combat` engine treats a group exactly like a single unit, transparently delegating turns to each member.
 
-The game continues until the player dies.
----
+**Code Evidence:**
+```java
+// From EnemyGroup.java: A Composite that inherits from the Component (Enemy)
+public class EnemyGroup extends Enemy {
+    private List<Enemy> enemies; 
 
-## 5. How to Run
-1.  **Requirement**: Java JDK 8 or higher.
-2.  **Compile**: 
-    ```bash
-    javac Main.java
-    ```
-3.  **Execute**:
-    ```bash
-    java Main
-    ```
+    @Override
+    public void takeTurn(Character target) {
+        for (Enemy enemy : enemies) {
+            if (enemy.isAlive()) {
+                enemy.takeTurn(target); 
+            }
+        }
+    }
+}
+```
+### C. Behavioural Pattern: Template Method
+**Problem**: Every enemy follows a strict protocol (Select Action -> Perform Action -> End Turn), but the actual combat logic (e.g., slashing vs. stabbing) must be unique to each subclass.
+
+**Implementation**: The Template Method is defined in `Enemy.java` via the `takeTurn()` method. This method defines the invariant "Skeleton" of the turn while calling abstract "Hooks" implemented by subclasses.
+
+  **Code Evidence:**
+  ```java
+  // From Enemy.java:
+  public final void takeTurn(Character target) {
+    selectAction();        
+    performAction(target);  
+    endTurn();             
+  }
+  // From Goblin.java: Subclass implementation of the hook
+  @Override
+  protected void performAction(Character target) {
+    System.out.println("Goblin slashes!");
+    target.takeDamage(_attackPower);
+  }
+  ```
+## 3. Team Collaboration
+We utilized GitHub for version control and task management to ensure a smooth collaborative workflow.
+
+**joshho0701**: System Architecture Design, Pattern Documentation, and Enemy Hierarchy.
+
+**Ruben-RMU**: Core Game Engine, Combat Loop Implementation, and Utility Logic.  
