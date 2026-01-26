@@ -42,7 +42,7 @@ Part-Whole Hierarchy: Because `EnemyGroup` is itself an Enemy, the `Combat` engi
 
 **Code Evidence:**
 ```java
-// From EnemyGroup.java: A Composite that inherits from the Component (Enemy)
+// From EnemyGroup.java
 public class EnemyGroup extends Enemy {
     private List<Enemy> enemies; 
 
@@ -69,7 +69,7 @@ public class EnemyGroup extends Enemy {
     performAction(target);  
     endTurn();             
   }
-  // From Goblin.java: Subclass implementation of the hook
+  // From Goblin.java:
   @Override
   protected void performAction(Character target) {
     System.out.println("Goblin slashes!");
