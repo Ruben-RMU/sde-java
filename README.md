@@ -82,3 +82,10 @@ We utilized GitHub for version control and task management to ensure a smooth co
 **joshho0701**: System Architecture Design, Pattern Documentation, and Enemy Hierarchy.
 
 **Ruben-RMU**: Core Game Engine, Combat Loop Implementation, and Utility Logic.  
+
+## 4. How to Run
+Requirement: Java JDK 8 or higher.
+
+Compile: javac Main.java
+
+Execute: java Main
